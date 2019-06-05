@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style type="text/css">
+		img{
+			width: 100px; 
+			position: absolute; 
+			display: none;
+		}
+
+	
+	</style>
+</head>
+<body>
+	<div style="background-image: url(game.png); height: 1000px; background-size: 100% 100%" class="cont">
+		
+		<button class="btn btn-warning btn_size_flower"  style="position: absolute;  margin-left: 20%; margin-top: 3%">Увеличить цветы</button>
+		<button class="btn btn-success btn_size_shooter" style="position: absolute;  margin-left: 30%; margin-top: 3%" >Увеличить горох</button>
+		<h1 class="text-white add">money: 50</h1>
+
+		<!--цветы 1 ряд-->
+		<img class="flower" src="sunflower.png"  style=" margin-left: 33%; margin-top: 13%; ">
+		<img class="flower" src="sunflower.png"  style=" margin-left: 33%; margin-top: 20%; ">
+		<img class="flower" src="sunflower.png"  style=" margin-left: 33%; margin-top: 27%; ">
+		<img class="flower" src="sunflower.png"  style=" margin-left: 33%; margin-top: 34%; ">
+		<img class="flower" src="sunflower.png"  style=" margin-left: 33%; margin-top: 41%; ">
+		<button class="flower_btn" style="color: yellow; font-weight: bold; position: absolute; margin-left: 33%; margin-top: 16%; ">PLANT</button>	
+		<button class="flower_btn" style="color: yellow; font-weight: bold; position: absolute; margin-left: 33%; margin-top: 23%; ">PLANT</button>
+		<button class="flower_btn" style="color: yellow; font-weight: bold; position: absolute; margin-left: 33%; margin-top: 30%; ">PLANT</button>
+		<button class="flower_btn" style="color: yellow; font-weight: bold; position: absolute;  margin-left: 33%; margin-top: 37%; ">PLANT</button>
+		<button class="flower_btn" style="color: yellow; font-weight: bold; position: absolute; margin-left: 33%; margin-top: 44%; ">PLANT</button>
+
+		<!--горох 2 ряд-->
+		<img class="shooter" src="peashooter.png"  style=" margin-left: 40%; margin-top: 13%;">		
+		<img class="shooter" src="peashooter.png"  style=" margin-left: 40%; margin-top: 20%; ">	
+		<img class="shooter" src="peashooter.png"  style=" margin-left: 40%; margin-top: 27%;  ">	
+		<img class="shooter" src="peashooter.png"  style=" margin-left: 40%; margin-top: 34%;">
+		<img class="shooter" src="peashooter.png"  style=" margin-left: 40%; margin-top: 41%; ">		
+		<button class="shooter_btn" style="color: green; font-weight: bold; position: absolute; margin-left: 40%; margin-top: 16%; ">PLANT</button>
+		<button class="shooter_btn" style="color: green; font-weight: bold; position: absolute; margin-left: 40%; margin-top: 23%; ">PLANT</button>	
+		<button class="shooter_btn" style="color: green; font-weight: bold; position: absolute; margin-left: 40%; margin-top: 30%; ">PLANT</button>
+		<button class="shooter_btn" style="color: green; font-weight: bold; position: absolute; margin-left: 40%; margin-top: 37%; ">PLANT</button>
+		<button class="shooter_btn" style="color: green; font-weight: bold; position: absolute; margin-left: 40%; margin-top: 44%; ">PLANT</button>	
+
+		<!--горох 3 ряд-->	
+		<img class="shooter" src="peashooter.png"  style=" margin-left: 47%; margin-top: 13%;">		
+		<img class="shooter" src="peashooter.png"  style=" margin-left: 47%; margin-top: 20%; ">	
+		<img class="shooter" src="peashooter.png"  style=" margin-left: 47%; margin-top: 27%;  ">	
+		<img class="shooter" src="peashooter.png"  style=" margin-left: 47%; margin-top: 34%;">
+		<img class="shooter" src="peashooter.png"  style=" margin-left: 47%; margin-top: 41%; ">		
+		<button class="shooter_btn" style="color: green; font-weight: bold; position: absolute; margin-left: 47%; margin-top: 16%; ">PLANT</button>
+		<button class="shooter_btn" style="color: green; font-weight: bold; position: absolute; margin-left: 47%; margin-top: 23%; ">PLANT</button>	
+		<button class="shooter_btn" style="color: green; font-weight: bold; position: absolute; margin-left: 47%; margin-top: 30%; ">PLANT</button>
+		<button class="shooter_btn" style="color: green; font-weight: bold; position: absolute; margin-left: 47%; margin-top: 37%; ">PLANT</button>
+		<button class="shooter_btn" style="color: green; font-weight: bold; position: absolute; margin-left: 47%; margin-top: 44%; ">PLANT</button>	
+		
+									
+	</div>
+
+<script>
+	let add=document.querySelector('.add')
+	let cont = document.querySelector('.cont')
+	let score = 50
+	let flowers = document.querySelectorAll(".flower");
+	let flower_btn = document.querySelectorAll(".flower_btn");
+	let shooter_btn = document.querySelectorAll(".shooter_btn");
+	let shooter = document.querySelectorAll(".shooter");
+	let array=['13%','20%','27%','34%','41%']
+	//солнце
+	let x = function(){
+		let rand = Math.random()*800
+		let round = Math.round(rand)
+		let rand2 = Math.random()*5
+		let round2 = Math.round(rand2)
+		let div = document.createElement('div')
+		cont.appendChild(div)
+		div.style.backgroundImage = 'url(sun.png)'
+		div.style.backgroundSize = '100%100%'
+		div.style.height = '50px'
+		div.style.width = '50px'
+		div.style.position = 'absolute'
+		div.style.marginLeft = round+'px'
+		div.style.marginTop = array[round2]
+		div.onclick = function(){
+			score = score+25
+			div.style.display = 'none'
+			add.innerHTML=score
+		}
+	}
+	//зомби
+	let array2=['url(zombie.png)', 'url(zombie2.png)']
+	let arg = 0
+		let z = function(){
+			arg=arg+1
+			let rand = Math.random()*4.5
+			let round = Math.round(rand)
+			let div = document.createElement('div')
+			cont.appendChild(div)
+			div.style.backgroundImage = 'url(zombie.png)'
+			div.style.backgroundSize = '100%100%'
+			div.style.height = '100px'
+			div.style.width = '100px'
+			div.style.position = 'absolute'
+			div.style.left = '1500px'
+			div.mt=array[round]
+			div.classList.add('zombies')
+
+			let ml = 1300
+			div.style.marginTop = array[round]
+			let zombie = 130
+			let zombies = document.querySelectorAll('.zombies')
+			console.dir(zombies)
+			let proverka = function(){
+				if(shooter[round].style.display=='block'){
+					let qw = function(){
+						zombie = zombie-10
+						if(zombie<=0){
+							clearInterval(interv)
+							div.style.display = 'none'
+						}
+					}
+					let interv=setInterval(qw,1000)
+					clearInterval(prov)	
+					for(let i=0;i<zombies.length;i=i+1){
+						if(zombies[i].mt==array[round]&&zombies[i].style.display=='block'){
+							let zx=function(){
+								zombie=zombie+10
+							}
+							let qwer=setInterval(zx,1000)
+							let ad = function(){
+								clearInterval(qwer)
+							}
+							setTimeout(ad,10000)
+						}	
+					}		
+				}	
+			}
+			let prov=setInterval(proverka,1000)
+
+			
+					
+			let a = function(){			
+				ml = ml - 10
+				div.style.left=ml+'px'
+				if (div.style.left=='300px'){
+					alert('u lose')
+					clearInterval(ti)
+					clearInterval(z)
+					clearInterval(a)
+				}
+			}
+			setInterval(a,1000)
+
+		}
+		let intervalid=setInterval(z,20000)
+	let intervalid2=setInterval(x,8000)
+	document.querySelector(".btn_size_flower").onclick = function(){
+		flowers[0].style.width = "150px";
+		flowers[1].style.width = "150px";
+		flowers[2].style.width = "150px";
+		flowers[3].style.width = "150px";
+		flowers[4].style.width = "150px";
+	}
+
+	let index = 0;
+	document.querySelector(".btn_size_shooter").onclick = function(){
+		index = index + 1;
+		shooter[index].style.width = "150px";		
+	}
+	//горохометы
+	shooter_btn[0].onclick = function(){
+		if(score>=100){
+			score = score - 100
+			add.innerHTML=score
+			shooter[0].style.display = "block"
+			shooter_btn[0].style.display = "none"		
+			let peastyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(pea.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '25%'
+				div.style.left='40%'
+				let imp=function(){
+					div.style.left='80%'
+					div.style.transition='2s'
+					let is=function(){
+						div.style.display='none'
+					}
+					setTimeout(is,1500)
+				}
+				setTimeout(imp,1000)
+			}
+			setInterval(peastyle,1000)
+
+		}
+	}   
+	shooter_btn[1].onclick = function(){
+		if(score>=100){
+			score = score - 100
+			add.innerHTML=score
+			shooter[1].style.display = "block"
+			shooter_btn[1].style.display = "none"
+			let peastyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(pea.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '42%'
+				div.style.left='40%'
+				let imp=function(){
+					div.style.left='80%'
+					div.style.transition='2s'
+					let is=function(){
+						div.style.display='none'
+					}
+					setTimeout(is,1500)
+				}
+				setTimeout(imp,1000)
+			}
+			setInterval(peastyle,1000)		
+		}
+	}   
+	shooter_btn[2].onclick = function(){
+		if(score>=100){
+			score = score - 100
+			add.innerHTML=score
+			shooter[2].style.display = "block"
+			shooter_btn[2].style.display = "none"
+			let peastyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(pea.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '59%'
+				div.style.left='40%'
+				let imp=function(){
+					div.style.left='80%'
+					div.style.transition='2s'
+					let is=function(){
+						div.style.display='none'
+					}
+					setTimeout(is,1500)
+				}
+				setTimeout(imp,1000)
+			}
+			setInterval(peastyle,1000)		
+		}
+	}   
+	shooter_btn[3].onclick = function(){
+		if(score>=100){
+			score = score - 100
+			add.innerHTML=score
+			shooter[3].style.display = "block"
+			shooter_btn[3].style.display = "none"
+			let peastyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(pea.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '72%'
+				div.style.left='40%'
+				let imp=function(){
+					div.style.left='80%'
+					div.style.transition='2s'
+					let is=function(){
+						div.style.display='none'
+					}
+					setTimeout(is,1500)
+				}
+				setTimeout(imp,1000)
+			}
+			setInterval(peastyle,1000)		
+		}
+	}   
+	shooter_btn[4].onclick = function(){
+		if(score>=100){
+			score = score - 100
+			add.innerHTML=score
+			shooter[4].style.display = "block"
+			shooter_btn[4].style.display = "none"
+			let peastyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(pea.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '88%'
+				div.style.left='40%'
+				let imp=function(){
+					div.style.left='80%'
+					div.style.transition='2s'
+					let is=function(){
+						div.style.display='none'
+					}
+					setTimeout(is,1500)
+				}
+				setTimeout(imp,1000)
+			}
+			setInterval(peastyle,1000)		
+		}
+	}  
+	shooter_btn[5].onclick = function(){
+		if(score>=100){
+			score = score - 100
+			add.innerHTML=score
+			shooter[5].style.display = "block"
+			shooter_btn[5].style.display = "none"		
+			let peastyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(pea.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '25%'
+				div.style.left='47%'
+				let imp=function(){
+					div.style.left='80%'
+					div.style.transition='2s'
+					let is=function(){
+						div.style.display='none'
+					}
+					setTimeout(is,1500)
+				}
+				setTimeout(imp,1000)
+			}
+			setInterval(peastyle,1000)
+
+		}
+	}   
+	shooter_btn[6].onclick = function(){
+		if(score>=100){
+			score = score - 100
+			add.innerHTML=score
+			shooter[6].style.display = "block"
+			shooter_btn[6].style.display = "none"
+			let peastyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(pea.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '42%'
+				div.style.left='47%'
+				let imp=function(){
+					div.style.left='80%'
+					div.style.transition='2s'
+					let is=function(){
+						div.style.display='none'
+					}
+					setTimeout(is,1500)
+				}
+				setTimeout(imp,1000)
+			}
+			setInterval(peastyle,1000)		
+		}
+	}   
+	shooter_btn[7].onclick = function(){
+		if(score>=100){
+			score = score - 100
+			add.innerHTML=score
+			shooter[7].style.display = "block"
+			shooter_btn[7].style.display = "none"
+			let peastyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(pea.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '59%'
+				div.style.left='47%'
+				let imp=function(){
+					div.style.left='80%'
+					div.style.transition='2s'
+					let is=function(){
+						div.style.display='none'
+					}
+					setTimeout(is,1500)
+				}
+				setTimeout(imp,1000)
+			}
+			setInterval(peastyle,1000)		
+		}
+	}   
+	shooter_btn[8].onclick = function(){
+		if(score>=100){
+			score = score - 100
+			add.innerHTML=score
+			shooter[8].style.display = "block"
+			shooter_btn[8].style.display = "none"
+			let peastyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(pea.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '72%'
+				div.style.left='47%'
+				let imp=function(){
+					div.style.left='80%'
+					div.style.transition='2s'
+					let is=function(){
+						div.style.display='none'
+					}
+					setTimeout(is,1500)
+				}
+				setTimeout(imp,1000)
+			}
+			setInterval(peastyle,1000)		
+		}
+	}   
+	shooter_btn[9].onclick = function(){
+		if(score>=100){
+			score = score - 100
+			add.innerHTML=score
+			shooter[9].style.display = "block"
+			shooter_btn[9].style.display = "none"
+			let peastyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(pea.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '88%'
+				div.style.left='47%'
+				let imp=function(){
+					div.style.left='80%'
+					div.style.transition='2s'
+					let is=function(){
+						div.style.display='none'
+					}
+					setTimeout(is,1500)
+				}
+				setTimeout(imp,1000)
+			}
+			setInterval(peastyle,1000)		
+		}
+	}  
+	//подсолнечники
+	flower_btn[0].onclick = function(){
+		if(score>=50){
+			score = score - 50
+			add.innerHTML=score
+			flowers[0].style.display = "block"
+			flower_btn[0].style.display = "none"
+			let flowerstyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(sun.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '25%'
+				div.style.left='33%'
+				div.onclick=function(){
+					score=score+25
+					div.style.display='none'
+					add.innerHTML=score
+				}
+			}
+			setInterval(flowerstyle,10000)
+
+		}
+		
+	}    
+	flower_btn[1].onclick = function(){
+		if(score>=50){
+			score = score - 50
+			add.innerHTML=score
+			flowers[1].style.display = "block"
+			flower_btn[1].style.display = "none"
+			let flowerstyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(sun.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '42%'
+				div.style.left='33%'
+				div.onclick=function(){
+					score=score+25
+					div.style.display='none'
+					add.innerHTML=score
+				}
+			}
+			setInterval(flowerstyle,10000)
+		}
+		
+	}   
+	flower_btn[2].onclick = function(){
+		if(score>=50){
+			score = score - 50
+			add.innerHTML=score
+			flowers[2].style.display = "block"
+			flower_btn[2].style.display = "none"
+			let flowerstyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(sun.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '59%'
+				div.style.left='33%'
+				div.onclick=function(){
+					score=score+25
+					div.style.display='none'
+					add.innerHTML=score
+				}
+			}
+			setInterval(flowerstyle,10000)
+		}
+		
+	}   
+	flower_btn[3].onclick = function(){
+		if(score>=50){
+			score = score - 50
+			add.innerHTML=score
+			flowers[3].style.display = "block"
+			flower_btn[3].style.display = "none"
+			let flowerstyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(sun.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '72%'
+				div.style.left='33%'
+				div.onclick=function(){
+					score=score+25
+					div.style.display='none'
+					add.innerHTML=score
+				}
+			}
+			setInterval(flowerstyle,10000)
+		}
+		
+	}   
+	flower_btn[4].onclick = function(){
+		if(score>=50){
+			score = score - 50
+			add.innerHTML=score
+			flowers[4].style.display = "block"
+			flower_btn[4].style.display = "none"
+			let flowerstyle=function(){
+				let div=document.createElement('div')
+				cont.appendChild(div)
+				div.style.height='50px'
+				div.style.width='50px'
+				div.style.backgroundImage='url(sun.png)'
+				div.style.backgroundSize='100%100%'
+				div.style.position='absolute'
+				div.style.top = '88%'
+				div.style.left='33%'
+				div.onclick=function(){
+					score=score+25
+					div.style.display='none'
+					add.innerHTML=score
+				}
+			}
+			setInterval(flowerstyle,10000)
+		}
+		
+	}   
+	let y=function(){
+		clearInterval(intervalid)
+		clearInterval(intervalid2)
+		alert('you win')
+	}
+	setTimeout(y,120000)
+</script>
+</body>
+</html>
